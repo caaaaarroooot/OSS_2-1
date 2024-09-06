@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <style>
+            button {
+                width: 50px;
+                height: 20px;
+                color: white;
+            }
+            .add_b {
+                background-color: blue;
+            }
+            .remove_b {
+                background-color: green;
+            }
+        </style>
+        <script>
+            window.onload = () => {
+                let b1 = document.getElementById("add");
+                let ul = document.createElement("ul");
+                b1.addEventListener("click", () => {
+                    let value = document.getElementById("texts");
+                    let array = value.value.split(",");
+
+                    array.forEach((item) => {
+                        let li = document.createElement("li");
+                        li.textContent = item.trim();
+                        ul.appendChild(li);
+                    });
+                    let div1 = document.getElementById("div1");
+                    div1.appendChild(ul);
+                });
+
+                let b2 = document.getElementById("remove");
+                b2.addEventListener("click", () => {
+                    let div1 = document.getElementById("div1");
+                    ul.innerHTML = "";
+                    div1.removeChild(ul);
+                });
+            };
+        </script>
+    </head>
+    <body>
+        <h1>Dynamic Web Page</h1>
+        <div id="div1">
+            <input type="text" id="texts" name="texts" />
+            <button id="add" class="add_b">추가</button>
+            <button id="remove" class="remove_b">삭제</button>
+        </div>
+    </body>
+</html>

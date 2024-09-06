@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <img src="./assets/booticon.png" width="80px" height="60px" />
+        <h1>Checkout form</h1>
+        <br />
+        <div>
+            Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a
+            validation state that can be triggered by attempting to submit the form without completing it.
+        </div>
+        <h2>Billig address</h2>
+        <br />
+        <form>
+            <div>First name<input type="text" name="fisrtName" /></div>
+            <div>Last name<input type="text" name="secondName" /></div>
+            <div>Birth date<input type="date" name="birthDate" /></div>
+            <div>Username <input type="text" name="username" placeholder="Username" /></div>
+            <div>Email (Opitonal) <input type="email" name="email" placeholder="you@example.com" /></div>
+            <div>Address <textarea name="address1" placeholder="1234 Main St"></textarea></div>
+            <div>Address 2 (Optional) <textarea name="address1" placeholder="Apartment or suite"></textarea></div>
+            <div>
+                Country
+                <select name="Country" id="country-select">
+                    <option value="">Choose...</option>
+                    <option value="kr">한국</option>
+                    <option value="jp">일본</option>
+                    <option value="cn">중국</option>
+                </select>
+            </div>
+            <div>
+                State
+                <select name="State" id="country-select">
+                    <option value="">Choose...</option>
+                    <option value="California">California</option>
+                    <option value="Seoul">서울</option>
+                    <option value="Tokyo">Tokyo</option>
+                    <option value="Beijing">Beijing</option>
+                </select>
+            </div>
+            <div>
+                <input type="checkbox" id="ad_check" /><label for="ad_check"
+                    >Shipping address is the same as my billing address</label
+                >
+                <br />
+                <input type="checkbox" id="svae" /><label for="save">Save this information for next time </label>
+            </div>
+            <div>
+                <fieldset>
+                    <legend>Payment</legend>
+                    <input type="radio" id="Credit_card" /><label for="Credit_card">Credit card</label>
+                    <input type="radio" id="Debit_card" /><label for="Debit_card">Debit card</label>
+                    <input type="radio" id="PayPal" /><label for="PayPal">PayPal</label>
+                </fieldset>
+            </div>
+            <button>Continue to checkout</button>
+        </form>
+    </body>
+</html>
