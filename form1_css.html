@@ -17,9 +17,10 @@
                 background-color: rgb(248, 249, 250);
                 overflow-y: auto;
                 overflow-x: hidden;
-                font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans",
-                    "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
-                    "Noto Color Emoji";
+                font-family: system-ui, -apple-system, "Segoe UI", Roboto,
+                    "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial,
+                    sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+                    "Segoe UI Symbol", "Noto Color Emoji";
                 color: rgb(33, 37, 41);
                 font-weight: 300;
             }
@@ -46,6 +47,32 @@
                 width: 120px;
                 height: 90px;
                 margin-bottom: 20px;
+            }
+            textarea {
+                line-height: 1.5;
+            }
+            textarea::placeholder {
+                font-weight: 500;
+                color: #888;
+            }
+            fieldset {
+                border: none;
+                display: flex;
+                flex-direction: column;
+                border-bottom: 1px solid rgba(150, 150, 150, 0.7);
+                padding-bottom: 5%;
+                box-sizing: border-box;
+                margin-bottom: 3%;
+            }
+            legend {
+                font-size: 25px;
+                font-weight: 500;
+                margin: 2% 0;
+                box-sizing: border-box;
+            }
+            button {
+                width: 100%;
+                height: 50px;
             }
             .formdiv {
                 width: 65%;
@@ -93,6 +120,7 @@
                 border-top: 1px solid rgba(150, 150, 150, 0.7);
                 box-sizing: border-box;
                 padding-top: 22px;
+                margin-bottom: 3%;
             }
             .inputText {
                 /* border: 1px solid rgb(161, 194, 241); onfocus시*/
@@ -116,41 +144,89 @@
                 display: flex;
                 flex-direction: row;
             }
+            .legendDiv {
+                font-weight: 400;
+            }
         </style>
     </head>
     <body>
         <img src="./assets/booticon.png" />
         <h1>Checkout form</h1>
         <p>
-            Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a
-            validation state that can be triggered by attempting to submit the form without completing it.
+            Below is an example form built entirely with Bootstrap’s form
+            controls. Each required form group has a validation state that can
+            be triggered by attempting to submit the form without completing it.
         </p>
         <div class="formdiv">
             <h2>Billig address</h2>
             <form>
                 <div class="Div">
-                    <div class="innerNameDiv">First name<input class="inputText" type="text" name="fisrtName" /></div>
-                    <div class="innerNameDiv">Last name<input class="inputText" type="text" name="secondName" /></div>
+                    <div class="innerNameDiv">
+                        First name<input
+                            class="inputText"
+                            type="text"
+                            name="fisrtName"
+                        />
+                    </div>
+                    <div class="innerNameDiv">
+                        Last name<input
+                            class="inputText"
+                            type="text"
+                            name="secondName"
+                        />
+                    </div>
                 </div>
-                <div class="innerDiv">Birth date<input class="inputText" type="date" name="birthDate" /></div>
                 <div class="innerDiv">
-                    Username <input class="inputText" type="text" name="username" placeholder="Username" />
+                    Birth date<input
+                        class="inputText"
+                        type="date"
+                        name="birthDate"
+                    />
+                </div>
+                <div class="innerDiv">
+                    Username
+                    <input
+                        class="inputText"
+                        type="text"
+                        name="username"
+                        placeholder="Username"
+                    />
                 </div>
                 <div class="innerDiv">
                     <div class="optionDiv">Email <span>(Opitonal)</span></div>
-                    <input class="inputText" type="email" name="email" placeholder="you@example.com" />
+                    <input
+                        class="inputText"
+                        type="email"
+                        name="email"
+                        placeholder="you@example.com"
+                    />
                 </div>
                 <div class="innerDiv">
-                    Address <textarea class="inputText" name="address1" placeholder="1234 Main St"></textarea>
+                    Address
+                    <textarea
+                        class="inputText"
+                        name="address1"
+                        placeholder="1234 Main St"
+                    ></textarea>
                 </div>
                 <div class="innerDiv">
-                    <div class="optionDiv">Address 2 <span>(Optional)</span></div>
-                    <textarea class="inputText" name="address1" placeholder="Apartment or suite"></textarea>
+                    <div class="optionDiv">
+                        Address 2 <span>(Optional)</span>
+                    </div>
+                    <textarea
+                        class="inputText"
+                        name="address1"
+                        placeholder="Apartment or suite"
+                    ></textarea>
                 </div>
                 <div class="Div">
                     <div class="selectDiv1">
                         Country
-                        <select name="Country" id="country-select" class="inputText">
+                        <select
+                            name="Country"
+                            id="country-select"
+                            class="inputText"
+                        >
                             <option value="">Choose...</option>
                             <option value="kr">한국</option>
                             <option value="jp">일본</option>
@@ -159,7 +235,11 @@
                     </div>
                     <div class="selectDiv2">
                         State
-                        <select name="State" id="country-select" class="inputText">
+                        <select
+                            name="State"
+                            id="country-select"
+                            class="inputText"
+                        >
                             <option value="">Choose...</option>
                             <option value="California">California</option>
                             <option value="Seoul">서울</option>
@@ -170,64 +250,115 @@
                 </div>
                 <div class="checkboxDiv">
                     <input type="checkbox" id="ad_check" /><label for="ad_check"
-                        >Shipping address is the same as my billing address</label
+                        >Shipping address is the same as my billing
+                        address</label
                     >
                     <br />
-                    <input type="checkbox" id="svae" /><label for="save">Save this information for next time </label>
+                    <input type="checkbox" id="svae" /><label for="save"
+                        >Save this information for next time
+                    </label>
                 </div>
                 <div>
                     <fieldset>
                         <legend>Payment</legend>
-                        <input type="radio" id="Credit_card" checked /><label for="Credit_card">Credit card</label>
-                        <input type="radio" id="Debit_card" /><label for="Debit_card">Debit card</label>
-                        <input type="radio" id="PayPal" /><label for="PayPal">PayPal</label>
+                        <div class="legendDiv">
+                            <input
+                                type="radio"
+                                id="Credit_card"
+                                checked
+                            /><label for="Credit_card">Credit card</label>
+                        </div>
+                        <div class="legendDiv">
+                            <input type="radio" id="Debit_card" /><label
+                                for="Debit_card"
+                                >Debit card</label
+                            >
+                        </div>
+                        <div class="legendDiv">
+                            <input type="radio" id="PayPal" /><label
+                                for="PayPal"
+                                >PayPal</label
+                            >
+                        </div>
                     </fieldset>
                 </div>
                 <button>Continue to checkout</button>
             </form>
-            <div style="height: 783px; width: 500px; background-color: antiquewhite">
-                Below is an example form built entirely with Bootstrap’s form controls. Each required form group has a
-                validation state that can be triggered by attempting to submit the form without completing it.Below is
-                an example form built entirely with Bootstrap’s form controls. Each required form group has a validation
-                state that can be triggered by attempting to submit the form without completing it.Below is an example
-                form built entirely with Bootstrap’s form controls. Each required form group has a validation state that
-                can be triggered by attempting to submit the form without completing it.Below is an example form built
-                entirely with Bootstrap’s form controls. Each required form group has a validation state that can be
-                triggered by attempting to submit the form without completing it.Below is an example form built entirely
-                with Bootstrap’s form controls. Each required form group has a validation state that can be triggered by
-                attempting to submit the form without completing it.Below is an example form built entirely with
-                Bootstrap’s form controls. Each required form group has a validation state that can be triggered by
-                attempting to submit the form without completing it.Below is an example form built entirely with
-                Bootstrap’s form controls. Each required form group has a validation state that can be triggered by
-                attempting to submit the form without completing it.Below is an example form built entirely with
-                Bootstrap’s form controls. Each required form group has a validation state that can be triggered by
-                attempting to submit the form without completing it.Below is an example form built entirely with
-                Bootstrap’s form controls. Each required form group has a validation state that can be triggered by
-                attempting to submit the form without completing it.Below is an example form built entirely with
-                Bootstrap’s form controls. Each required form group has a validation state that can be triggered by
-                attempting to submit the form without completing it.Below is an example form built entirely with
-                Bootstrap’s form controls. Each required form group has a validation state that can be triggered by
-                attempting to submit the form without completing it.Below is an example form built entirely with
-                Bootstrap’s form controls. Each required form group has a validation state that can be triggered by
-                attempting to submit the form without completing it.Below is an example form built entirely with
-                Bootstrap’s form controls. Each required form group has a validation state that can be triggered by
-                attempting to submit the form without completing it.Below is an example form built entirely with
-                Bootstrap’s form controls. Each required form group has a validation state that can be triggered by
-                attempting to submit the form without completing it.Below is an example form built entirely with
-                Bootstrap’s form controls. Each required form group has a validation state that can be triggered by
-                attempting to submit the form without completing it.Below is an example form built entirely with
-                Bootstrap’s form controls. Each required form group has a validation state that can be triggered by
-                attempting to submit the form without completing it.Below is an example form built entirely with
-                Bootstrap’s form controls. Each required form group has a validation state that can be triggered by
-                attempting to submit the form without completing it.Below is an example form built entirely with
-                Bootstrap’s form controls. Each required form group has a validation state that can be triggered by
-                attempting to submit the form without completing it.Below is an example form built entirely with
-                Bootstrap’s form controls. Each required form group has a validation state that can be triggered by
-                attempting to submit the form without completing it.Below is an example form built entirely with
-                Bootstrap’s form controls. Each required form group has a validation state that can be triggered by
-                attempting to submit the form without completing it.Below is an example form built entirely with
-                Bootstrap’s form controls. Each required form group has a validation state that can be triggered by
-                attempting to submit the form without completing it.
+            <div
+                style="
+                    height: 783px;
+                    width: 500px;
+                    background-color: antiquewhite;
+                "
+            >
+                Below is an example form built entirely with Bootstrap’s form
+                controls. Each required form group has a validation state that
+                can be triggered by attempting to submit the form without
+                completing it.Below is an example form built entirely with
+                Bootstrap’s form controls. Each required form group has a
+                validation state that can be triggered by attempting to submit
+                the form without completing it.Below is an example form built
+                entirely with Bootstrap’s form controls. Each required form
+                group has a validation state that can be triggered by attempting
+                to submit the form without completing it.Below is an example
+                form built entirely with Bootstrap’s form controls. Each
+                required form group has a validation state that can be triggered
+                by attempting to submit the form without completing it.Below is
+                an example form built entirely with Bootstrap’s form controls.
+                Each required form group has a validation state that can be
+                triggered by attempting to submit the form without completing
+                it.Below is an example form built entirely with Bootstrap’s form
+                controls. Each required form group has a validation state that
+                can be triggered by attempting to submit the form without
+                completing it.Below is an example form built entirely with
+                Bootstrap’s form controls. Each required form group has a
+                validation state that can be triggered by attempting to submit
+                the form without completing it.Below is an example form built
+                entirely with Bootstrap’s form controls. Each required form
+                group has a validation state that can be triggered by attempting
+                to submit the form without completing it.Below is an example
+                form built entirely with Bootstrap’s form controls. Each
+                required form group has a validation state that can be triggered
+                by attempting to submit the form without completing it.Below is
+                an example form built entirely with Bootstrap’s form controls.
+                Each required form group has a validation state that can be
+                triggered by attempting to submit the form without completing
+                it.Below is an example form built entirely with Bootstrap’s form
+                controls. Each required form group has a validation state that
+                can be triggered by attempting to submit the form without
+                completing it.Below is an example form built entirely with
+                Bootstrap’s form controls. Each required form group has a
+                validation state that can be triggered by attempting to submit
+                the form without completing it.Below is an example form built
+                entirely with Bootstrap’s form controls. Each required form
+                group has a validation state that can be triggered by attempting
+                to submit the form without completing it.Below is an example
+                form built entirely with Bootstrap’s form controls. Each
+                required form group has a validation state that can be triggered
+                by attempting to submit the form without completing it.Below is
+                an example form built entirely with Bootstrap’s form controls.
+                Each required form group has a validation state that can be
+                triggered by attempting to submit the form without completing
+                it.Below is an example form built entirely with Bootstrap’s form
+                controls. Each required form group has a validation state that
+                can be triggered by attempting to submit the form without
+                completing it.Below is an example form built entirely with
+                Bootstrap’s form controls. Each required form group has a
+                validation state that can be triggered by attempting to submit
+                the form without completing it.Below is an example form built
+                entirely with Bootstrap’s form controls. Each required form
+                group has a validation state that can be triggered by attempting
+                to submit the form without completing it.Below is an example
+                form built entirely with Bootstrap’s form controls. Each
+                required form group has a validation state that can be triggered
+                by attempting to submit the form without completing it.Below is
+                an example form built entirely with Bootstrap’s form controls.
+                Each required form group has a validation state that can be
+                triggered by attempting to submit the form without completing
+                it.Below is an example form built entirely with Bootstrap’s form
+                controls. Each required form group has a validation state that
+                can be triggered by attempting to submit the form without
+                completing it.
             </div>
         </div>
     </body>
