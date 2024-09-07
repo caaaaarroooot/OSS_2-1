@@ -90,6 +90,7 @@
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;
+                margin-bottom: 3%;
             }
             .innerNameDiv {
                 width: 48%;
@@ -128,7 +129,6 @@
                 margin-bottom: 3%;
             }
             .inputText {
-                /* border: 1px solid rgb(161, 194, 241); onfocus시*/
                 border: 1px solid rgb(206, 212, 218);
                 border-radius: 6px;
                 box-sizing: border-box;
@@ -139,10 +139,25 @@
                 resize: none;
                 margin: 2% 0;
             }
+            .inputText.error {
+                border-color: red;
+            }
+            .inputText.success {
+                border-color: green;
+            }
+            .inputText.optional {
+                border-color: green;
+            }
             .inputText:focus {
                 border: 3px solid rgb(161, 194, 241);
                 padding: 3px 9px;
                 outline: none;
+            }
+            .inputText.success:focus {
+                border-color: green;
+            }
+            .inputText.error:focus {
+                border-color: red;
             }
             .optionDiv {
                 width: 100%;
@@ -151,6 +166,14 @@
             }
             .legendDiv {
                 font-weight: 400;
+            }
+            .error-message {
+                color: red;
+                font-size: 12px;
+                display: none;
+            }
+            .error-message.active {
+                display: block;
             }
         </style>
     </head>
@@ -162,28 +185,46 @@
             validation state that can be triggered by attempting to submit the form without completing it.
         </p>
         <div class="formdiv">
-            <h2>Billig address</h2>
-            <form>
+            <h2>Billing address</h2>
+            <form name="form1">
                 <div class="Div">
-                    <div class="innerNameDiv">First name<input class="inputText" type="text" name="fisrtName" /></div>
-                    <div class="innerNameDiv">Last name<input class="inputText" type="text" name="secondName" /></div>
+                    <div class="innerNameDiv">
+                        First name
+                        <input class="inputText" type="text" name="firstName" id="firstName" />
+                        <div id="error-message-firstName" class="error-message">First name is required</div>
+                    </div>
+                    <div class="innerNameDiv">
+                        Last name
+                        <input class="inputText" type="text" name="lastName" id="lastName" />
+                        <div id="error-message-lastName" class="error-message">Last name is required</div>
+                    </div>
                 </div>
-                <div class="innerDiv">Birth date<input class="inputText" type="date" name="birthDate" /></div>
+                <div class="innerDiv">
+                    <div class="optionDiv">Birth date<span>(Optional)</span></div>
+                    <input class="inputText" type="date" name="birthDate" id="birthDay" />
+                </div>
                 <div class="innerDiv">
                     Username
-                    <input class="inputText" type="text" name="username" placeholder="Username" />
+                    <input class="inputText" type="text" name="username" id="username" placeholder="Username" />
+                    <div id="error-message-username" class="error-message">Username is required</div>
                 </div>
                 <div class="innerDiv">
-                    <div class="optionDiv">Email <span>(Opitonal)</span></div>
-                    <input class="inputText" type="email" name="email" placeholder="you@example.com" />
+                    <div class="optionDiv">Email <span>(Optional)</span></div>
+                    <input class="inputText" type="email" name="email" placeholder="you@example.com" id="email" />
                 </div>
                 <div class="innerDiv">
                     Address
-                    <textarea class="inputText" name="address1" placeholder="1234 Main St"></textarea>
+                    <textarea class="inputText" name="address1" id="address1" placeholder="1234 Main St"></textarea>
+                    <div id="error-message-address1" class="error-message">Address is required</div>
                 </div>
                 <div class="innerDiv">
                     <div class="optionDiv">Address 2 <span>(Optional)</span></div>
-                    <textarea class="inputText" name="address1" placeholder="Apartment or suite"></textarea>
+                    <textarea
+                        class="inputText"
+                        name="address2"
+                        placeholder="Apartment or suite"
+                        id="address2"
+                    ></textarea>
                 </div>
                 <div class="Div">
                     <div class="selectDiv1">
@@ -194,16 +235,18 @@
                             <option value="jp">일본</option>
                             <option value="cn">중국</option>
                         </select>
+                        <div id="error-message-country" class="error-message">Country is required</div>
                     </div>
                     <div class="selectDiv2">
                         State
-                        <select name="State" id="country-select" class="inputText">
+                        <select name="State" id="state-select" class="inputText">
                             <option value="">Choose...</option>
                             <option value="California">California</option>
                             <option value="Seoul">서울</option>
                             <option value="Tokyo">Tokyo</option>
                             <option value="Beijing">Beijing</option>
                         </select>
+                        <div id="error-message-state" class="error-message">State is required</div>
                     </div>
                 </div>
                 <div class="checkboxDiv">
@@ -231,8 +274,86 @@
                         </div>
                     </fieldset>
                 </div>
-                <button>Continue to checkout</button>
+                <button type="button" onclick="handleSubmit()">Continue to checkout</button>
             </form>
         </div>
+        <script>
+            const firstNameInput = document.getElementById("firstName");
+            const lastNameInput = document.getElementById("lastName");
+            const usernameInput = document.getElementById("username");
+            const addressInput = document.getElementById("address1");
+            const countrySelect = document.getElementById("country-select");
+            const stateSelect = document.getElementById("state-select");
+            const birthdaySelect = document.getElementById("birthDay");
+            const emailInput = document.getElementById("email");
+            const address2Input = document.getElementById("address2");
+
+            const errorMessageFirstName = document.getElementById("error-message-firstName");
+            const errorMessageLastName = document.getElementById("error-message-lastName");
+            const errorMessageUsername = document.getElementById("error-message-username");
+            const errorMessageAddress = document.getElementById("error-message-address1");
+            const errorMessageCountry = document.getElementById("error-message-country");
+            const errorMessageState = document.getElementById("error-message-state");
+
+            function validateField(input, errorMessage) {
+                const value = input.value.trim();
+                if (value === "" && !input.classList.contains("optional")) {
+                    input.classList.add("error");
+                    input.classList.remove("success");
+                    errorMessage.classList.add("active");
+                    return false;
+                } else {
+                    input.classList.remove("error");
+                    input.classList.add("success");
+                    errorMessage.classList.remove("active");
+                    return true;
+                }
+            }
+
+            function isValid() {
+                let isValid = true;
+
+                isValid = validateField(firstNameInput, errorMessageFirstName);
+                isValid = validateField(lastNameInput, errorMessageLastName) && isValid;
+                isValid = validateField(usernameInput, errorMessageUsername) && isValid;
+                isValid = validateField(addressInput, errorMessageAddress) && isValid;
+                isValid = validateField(countrySelect, errorMessageCountry) && isValid;
+                isValid = validateField(stateSelect, errorMessageState) && isValid;
+                return isValid;
+            }
+
+            function handleSubmit() {
+                birthdaySelect.classList.add("success");
+                address2Input.classList.add("success");
+                emailInput.classList.add("success");
+                if (isValid()) {
+                    document.form1.submit();
+                }
+            }
+
+            firstNameInput.addEventListener("input", () => {
+                validateField(firstNameInput, errorMessageFirstName);
+            });
+
+            lastNameInput.addEventListener("input", () => {
+                validateField(lastNameInput, errorMessageLastName);
+            });
+
+            usernameInput.addEventListener("input", () => {
+                validateField(usernameInput, errorMessageUsername);
+            });
+
+            addressInput.addEventListener("input", () => {
+                validateField(addressInput, errorMessageAddress);
+            });
+
+            countrySelect.addEventListener("change", () => {
+                validateField(countrySelect, errorMessageCountry);
+            });
+
+            stateSelect.addEventListener("change", () => {
+                validateField(stateSelect, errorMessageState);
+            });
+        </script>
     </body>
 </html>
