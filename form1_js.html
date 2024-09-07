@@ -175,6 +175,9 @@
             .error-message.active {
                 display: block;
             }
+            .mouseOn {
+                cursor: pointer;
+            }
         </style>
     </head>
     <body>
@@ -274,7 +277,9 @@
                         </div>
                     </fieldset>
                 </div>
-                <button type="button" onclick="handleSubmit()">Continue to checkout</button>
+                <button type="button" id="btn" onclick="handleSubmit()" onmouseover="mouseon()" onmouseout="mouseout()">
+                    Continue to checkout
+                </button>
             </form>
         </div>
         <script>
@@ -287,6 +292,7 @@
             const birthdaySelect = document.getElementById("birthDay");
             const emailInput = document.getElementById("email");
             const address2Input = document.getElementById("address2");
+            const mybutton = document.getElementById("btn");
 
             const errorMessageFirstName = document.getElementById("error-message-firstName");
             const errorMessageLastName = document.getElementById("error-message-lastName");
@@ -331,6 +337,20 @@
                     alert("submit success");
                 }
             }
+
+            function mouseon() {
+                btn.classList.add("mouseOn");
+            }
+
+            function mouseout() {
+                btn.classList.remove("mouseOn");
+            }
+
+            function keyDown(event) {
+                console.log(event.key);
+            }
+
+            firstNameInput.addEventListener("keydown", keyDown);
 
             firstNameInput.addEventListener("input", () => {
                 validateField(firstNameInput, errorMessageFirstName);
